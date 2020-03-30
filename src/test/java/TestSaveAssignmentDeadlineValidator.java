@@ -15,7 +15,8 @@ import validation.Validator;
 import static org.junit.Assert.*;
 
 //
-public class TestSaveStudentIdValidator {
+
+public class TestSaveAssignmentDeadlineValidator {
 
     private Service service;
 
@@ -34,9 +35,9 @@ public class TestSaveStudentIdValidator {
 
         service = new Service(fileRepository1, fileRepository2, fileRepository3);
 
-        // test case id null
+        // test case
 
-        int done=service.saveStudent(null,"Alex",231);
+        int done=service.saveTema("12","descriere",16,1);
 
         assertEquals(0,done);
 
@@ -55,31 +56,14 @@ public class TestSaveStudentIdValidator {
 
         service = new Service(fileRepository1, fileRepository2, fileRepository3);
 
-        // test case id empty
+        // test case id null
 
-        int done=service.saveStudent("","Raul",231);
+        int done=service.saveTema("13","descriere",12,1);
 
-        assertEquals(0,done);
-    }
 
-    @Test
-    public void tc_3(){
 
-        Validator<Student> studentValidator = new StudentValidator();
-        Validator<Tema> temaValidator = new TemaValidator();
-        Validator<Nota> notaValidator = new NotaValidator();
-
-        StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studenti.xml");
-        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
-        NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
-
-        service = new Service(fileRepository1, fileRepository2, fileRepository3);
-
-        //test case id already assigned
-
-        int done=service.saveStudent("a","Raul",931);
         assertEquals(1,done);
-        int done1=service.saveStudent("a","Raul",931);
-        assertEquals(0,done1);
+
     }
+
 }
